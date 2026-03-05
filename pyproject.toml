@@ -1,0 +1,40 @@
+[project]
+name = "ya-wiki-api"
+version = "0.1.0"
+description = "Typed Python client for Yandex Wiki API (sync + async)"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [
+    { name = "Daniil Pavliuchik", email = "keemor821@gmail.com" },
+]
+requires-python = ">=3.10"
+keywords = ["yandex", "wiki", "api", "client"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Typing :: Typed",
+]
+dependencies = [
+    "httpx>=0.24",
+    "pydantic>=2.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/keemor/ya-wiki-api"
+Documentation = "https://github.com/keemor/ya-wiki-api/blob/main/docs/yandex-wiki-api.md"
+Issues = "https://github.com/keemor/ya-wiki-api/issues"
+
+[build-system]
+requires = ["uv_build>=0.8.13,<0.9.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "python-dotenv>=1.0",
+]
