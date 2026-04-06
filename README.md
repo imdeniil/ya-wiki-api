@@ -40,6 +40,10 @@ with WikiClient(token="your-oauth-token", org_id="your-org-id") as client:
         {"row_id": 1, "column_slug": "score", "value": 100},
     ])
 
+    # Подстраницы
+    descendants = client.pages.get_descendants(page.id, page_size=10)
+    descendants = client.pages.get_descendants_by_slug("path/to/page", include_self=True)
+
     # Очистка
     client.grids.delete(grid.id)
     client.pages.delete(page.id)
@@ -88,6 +92,8 @@ client = WikiClient(token="iam-token", cloud_org_id="cloud-org-id", is_iam=True)
 | `append_content(id, content)` | `POST /v1/pages/{id}/append-content` |
 | `get_grids(id)` | `GET /v1/pages/{id}/grids` |
 | `get_resources(id)` | `GET /v1/pages/{id}/resources` |
+| `get_descendants(id)` | `GET /v1/pages/{id}/descendants` |
+| `get_descendants_by_slug(slug)` | `GET /v1/pages/descendants` |
 
 ### Таблицы (`client.grids`)
 
