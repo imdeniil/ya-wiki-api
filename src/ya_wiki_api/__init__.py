@@ -7,6 +7,7 @@ from .models import (
     NewColumn,
     Page,
     PageType,
+    PaginatedPages,
     TextFormat,
     UpdateCellRequest,
 )
@@ -19,6 +20,7 @@ __all__ = [
     "NewColumn",
     "Page",
     "PageType",
+    "PaginatedPages",
     "TextFormat",
     "UpdateCellRequest",
     "WikiAPIError",

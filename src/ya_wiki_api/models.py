@@ -396,6 +396,13 @@ class PaginatedGrids(BaseModel):
     page_id: int | None = None
 
 
+class PaginatedPages(BaseModel):
+    results: list[PageIdentity]
+    next_cursor: str | None = None
+    prev_cursor: str | None = None
+    page_id: int | None = None
+
+
 class PaginatedResources(BaseModel):
     results: list[Resource]
     next_cursor: str | None = None

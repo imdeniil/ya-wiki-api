@@ -9,6 +9,7 @@ from .models import (
     Page,
     PageType,
     PaginatedGrids,
+    PaginatedPages,
     PaginatedResources,
     SortDirection,
     TextFormat,
@@ -213,6 +214,47 @@ class Pages:
         )
         return Page.model_validate(resp.json())
 
+    def get_descendants(
+        self,
+        page_id: int,
+        *,
+        actuality: str | None = None,
+        cursor: str | None = None,
+        include_self: bool | None = None,
+        page_size: int | None = None,
+    ) -> PaginatedPages:
+        resp = self._http.get(
+            f"/pages/{page_id}/descendants",
+            params={
+                "actuality": actuality,
+                "cursor": cursor,
+                "include_self": include_self,
+                "page_size": page_size,
+            },
+        )
+        return PaginatedPages.model_validate(resp.json())
+
+    def get_descendants_by_slug(
+        self,
+        slug: str,
+        *,
+        actuality: str | None = None,
+        cursor: str | None = None,
+        include_self: bool | None = None,
+        page_size: int | None = None,
+    ) -> PaginatedPages:
+        resp = self._http.get(
+            "/pages/descendants",
+            params={
+                "slug": slug,
+                "actuality": actuality,
+                "cursor": cursor,
+                "include_self": include_self,
+                "page_size": page_size,
+            },
+        )
+        return PaginatedPages.model_validate(resp.json())
+
 
 class AsyncPages:
     def __init__(self, http: AsyncHttpClient) -> None:
@@ -408,3 +450,44 @@ class AsyncPages:
             json=body,
         )
         return Page.model_validate(resp.json())
+
+    async def get_descendants(
+        self,
+        page_id: int,
+        *,
+        actuality: str | None = None,
+        cursor: str | None = None,
+        include_self: bool | None = None,
+        page_size: int | None = None,
+    ) -> PaginatedPages:
+        resp = await self._http.get(
+            f"/pages/{page_id}/descendants",
+            params={
+                "actuality": actuality,
+                "cursor": cursor,
+                "include_self": include_self,
+                "page_size": page_size,
+            },
+        )
+        return PaginatedPages.model_validate(resp.json())
+
+    async def get_descendants_by_slug(
+        self,
+        slug: str,
+        *,
+        actuality: str | None = None,
+        cursor: str | None = None,
+        include_self: bool | None = None,
+        page_size: int | None = None,
+    ) -> PaginatedPages:
+        resp = await self._http.get(
+            "/pages/descendants",
+            params={
+                "slug": slug,
+                "actuality": actuality,
+                "cursor": cursor,
+                "include_self": include_self,
+                "page_size": page_size,
+            },
+        )
+        return PaginatedPages.model_validate(resp.json())
